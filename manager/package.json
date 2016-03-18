@@ -1,0 +1,24 @@
+{
+  "name": "ledpad-manager",
+  "version": "1.0.0",
+  "description": "Arduino based programmable ledpad",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prilutskiy/ledpad.git"
+  },
+  "keywords": [
+    "arduino",
+    "ledpad",
+    "nodejs"
+  ],
+  "author": "Max Prilutskiy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/prilutskiy/ledpad/issues"
+  },
+  "homepage": "https://github.com/prilutskiy/ledpad#readme"
+}
