@@ -6,9 +6,9 @@ var concatcss = require("gulp-concat-css");
 var concatjs = require("gulp-concat");
 
 gulp.task("build", function() {
-    gulp.src("css/*.css")
+    gulp.src("ui/css/*.css")
         .pipe(concatcss("style.css"))
         .pipe(cssmin())
         .pipe(rename({ suffix: ".min" }))
-        .pipe(gulp.dest("dist/"));
+        .pipe(gulp.dest("ui/dist/"));
 });
