@@ -1,0 +1,13 @@
+<div class="ui segments field-container">
+    <div class="ui top segment">
+        <p>Field layout</p>
+    </div>
+    <div class="ui secondary segment">
+        <div class="field">
+            <div class="field-row" ng-repeat="i in range(0, 31)">
+                <div class="field-cell {{field[i][j] ? 'alive' : 'dead'}}" ng-repeat="j in range(0, 31)" ng-mouseover="onHover(this, i, j)"
+                ng-mousedown="onMousedown(this, i, j)" ng-mouseup="onMouseup(this, i, j)"></div>
+            </div>
+        </div>
+    </div>
+</div>

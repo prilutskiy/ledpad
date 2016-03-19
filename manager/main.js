@@ -13,6 +13,7 @@ app.get('/', function(req, res){
 
 app.use("/pages", express.static(__dirname + '/ui/pages'));
 app.use("/assets", express.static(__dirname + '/ui/assets'));
+app.use("/js", express.static(__dirname + '/ui/js'));
 app.use("/dist", express.static(__dirname + '/ui/dist'));
 
 app.listen(3000, function () {
