@@ -1,15 +1,13 @@
+.field-container {
+    
+}
 .field{    
     margin: auto;
     display: table;
 }
-
-.field-container {
-}
-
 .field-row{
     margin: -3px;
 }
-
 .field-cell{
     padding: 0;
     margin: 0px 1px;
