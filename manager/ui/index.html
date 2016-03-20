@@ -11,6 +11,7 @@
     <title>Ledpad Manager</title>
     <link rel="stylesheet" type="text/css" href="dist/style.min.css">
     <script src="js/jquery-2.2.2.min.js"></script>
+    <script src="js/semantic.min.js"></script>
     <script src="js/angular.min.js"></script>
     <script src="js/angular-ui-router.min.js"></script>
     <script src="js/app.js"></script>
@@ -38,16 +39,28 @@
                         <div class="ui top segment">Settings</div>
                         <div class="ui segment">
                             <div class="ui form success">
+
                                 <div class="field">
-                                    <label>E-mail</label>
-                                    <input type="email" placeholder="joe@schmoe.com">
+                                    <label>Target button</label>
+                                    <div class="ui fluid basic buttons">
+                                        <button class="ui button">1</button>
+                                        <button class="ui button">2</button>
+                                        <button class="ui button">3</button>
+                                        <button class="ui button">4</button>
+                                        <button class="ui button">5</button>
+                                    </div>
                                 </div>
-                                <div class="ui success message">
-                                    <div class="header">Form Completed</div>
-                                    <p>You're all signed up for the newsletter.</p>
+                                <div class="field">
+                                    <label>Mode</label>
+                                    <select class="ui dropdown">
+                                        <option value="">Mode</option>
+                                        <option value="1">Simple output</option>
+                                        <option value="0">Game of Life</option>
+                                    </select>
                                 </div>
-                                <div class="ui submit button">Submit</div>
+                                <div class="ui submit primary button">Save</div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -55,5 +68,10 @@
         </div>
     </div>
 </body>
+
+<script>
+    $('select.dropdown').dropdown();
+
+</script>
 
 </html>
