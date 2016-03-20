@@ -30,19 +30,28 @@
     <div class="ui main">
         <div class="ui stackable centered grid">
             <div class="row">
+                <h4 class="ui horizontal divider header">
+                    <i class="settings icon"></i>
+                    Ledpad configuration
+                </h4>
+            </div>
+            <div class="row">
                 <div class="ten wide column">
                     <ui-view>
                     </ui-view>
                 </div>
                 <div class="six wide column">
-                    <div class="ui segments">
-                        <div class="ui top segment">Settings</div>
+                    <div class="ui segments" id="settings">
+                        <div class="ui top segment">
+                            Settings
+                        </div>
                         <div class="ui secondary segment">
                             <div class="ui form success">
 
                                 <div class="field">
                                     <label>Target button</label>
                                     <div class="ui fluid basic buttons">
+                                        <button class="ui button">Startup</button>
                                         <button class="ui button">1</button>
                                         <button class="ui button">2</button>
                                         <button class="ui button">3</button>
