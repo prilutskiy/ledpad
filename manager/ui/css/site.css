@@ -1,7 +1,18 @@
+@media (min-width: 768px) {
+    body {
+        min-width: 1020px;
+        overflow-x: scroll;
+    }
+}
+@media (max-width: 768px) {
+    body {        
+        min-width: 680px;
+        overflow-x: scroll;
+    }
+    
+}
 body {
-    background-color: #FFFFFF;
-    width: 1050px;
-    overflow-x: scroll;
+    background-color: #FFFFFF;    
 }
 .ui.menu .item img.logo {
     margin-right: 1.5em;
