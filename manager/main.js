@@ -11,10 +11,7 @@ app.get('/', function(req, res){
     res.sendFile(path.resolve(__dirname + '/ui/index.html'));
 });
 
-app.use("/pages", express.static(__dirname + '/ui/pages'));
-app.use("/assets", express.static(__dirname + '/ui/assets'));
-app.use("/js", express.static(__dirname + '/ui/js'));
-app.use("/dist", express.static(__dirname + '/ui/dist'));
+app.use("/", express.static(__dirname + '/ui/'));
 
 app.listen(3000, function () {
   console.log('Server started on port 3000');
