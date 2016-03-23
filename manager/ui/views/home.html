@@ -1,18 +1,14 @@
-<div class="ui segments" >
+<div class="ui segments">
     <div class="ui top segment card">
         <div class="content">
-            Field layout            
+            Field layout
         </div>
     </div>
     <div class="ui secondary segment">
         <div class="field-container">
             <div class="field-row" ng-repeat="i in range(0, 31)">
-                <div class="field-cell {{field[i][j] ? 'alive' : 'dead'}}" 
-                     ng-repeat="j in range(0, 31)" 
-                     ng-mouseover="onHover(this, i, j)"
-                     ng-mousedown="onMousedown(this, i, j)" 
-                     ng-mouseup="onMouseup(this, i, j)"
-                ></div>
+                <div class="field-cell {{field[i][j] ? 'alive' : 'dead'}}" ng-repeat="j in range(0, 31)" ng-mouseover="onHover(this, i, j)"
+                ng-mousedown="onMousedown(this, i, j)" ng-mouseup="onMouseup(this, i, j)"></div>
             </div>
         </div>
     </div>
@@ -26,14 +22,15 @@
                 <i class="icon undo"></i>
                 Revert
             </span>
-            <span class="right floated ui tiny basic labeled icon button">
+            <span class="right floated ui tiny basic labeled icon button" ng-click="saveData()">
                 <i class="icon arrow down"></i>
                 Save pattern
             </span>
-            <span class="right floated ui tiny basic labeled icon button">
+            <span class="right floated ui tiny basic labeled icon button" onclick="$('#loadFile').click();">
                 <i class="icon arrow up"></i>
                 Load pattern
             </span>
+            <input id="loadFile" type="file" accept=".gol" multiselect="false" hidden ng-model="loadedFile" onchange="angular.element(this).scope().loadData(this)">
         </div>
     </div>
 </div>

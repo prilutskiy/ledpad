@@ -38,9 +38,13 @@ angular.module("field.manager", [])
                     }
                 }
             };
-            this.setData = function(e, matrix) {
-                self.mouseState = 0;
-                self.data = matrix;
+            this.setData = function(matrix) {
+                self.mouseState = 0;                
+                for (var i = 0; i < self.data.length; i++) {
+                    for (var j = 0; j < self.data[i].length; j++) {
+                        self.data[i][j] = matrix[i][j];
+                    }
+                }
                 self.initialData = matrix;
             };
             function createField(n, initialValue) {
