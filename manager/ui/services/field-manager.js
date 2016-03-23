@@ -2,7 +2,10 @@ angular.module("field.manager", [])
     .factory("field", function() {
         function Field() {
             var self = this;
+            
             this.data = createField(32, 0);
+            this.initialData = createField(32, 0);
+            
             this.mouseState = 0; //1 - pressed, 0 - released
             this.resetMouse = function() {
                 self.mouseState = 0;
@@ -19,6 +22,14 @@ angular.module("field.manager", [])
             this.onMouseup = function(e, i, j) {
                 self.mouseState = 0;
             };
+            this.revertData = function(e){                
+                self.mouseState = 0;
+                for (var i = 0; i < self.data.length; i++) {
+                    for (var j = 0; j < self.data[i].length; j++) {
+                        self.data[i][j] = self.initialData[i][j];
+                    }
+                }
+            };
             this.clearData = function(e) {
                 self.mouseState = 0;
                 for (var i = 0; i < self.data.length; i++) {
@@ -30,6 +41,7 @@ angular.module("field.manager", [])
             this.setData = function(e, matrix) {
                 self.mouseState = 0;
                 self.data = matrix;
+                self.initialData = matrix;
             };
             function createField(n, initialValue) {
                 var data = new Array(n);

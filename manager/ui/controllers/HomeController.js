@@ -10,4 +10,5 @@ app.controller('HomeController', [
         
         $scope.clearData = field.clearData;
         $scope.setData = field.setData;
+        $scope.revertData = field.revertData;
     }]);
