@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html ng-app="ledpad-manager">
+
+<head>
+    <!-- Standard Meta -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <!-- Site Properties -->
+    <title>Ledpad Manager</title>
+    <link rel="stylesheet" type="text/css" href="dist/style.min.css">
+    <script src="js/jquery-2.2.2.min.js"></script>
+    <script src="js/semantic.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-ui-router.min.js"></script>
+    
+    <script src="services/field-manager.js"></script>
+    <script src="app.js"></script>
+    <script src="controllers/StartupController.js"></script>
+    <script src="controllers/HomeController.js"></script>
+</head>
+
+<body ng-controller="StartupController">
+    <div class="ui fixed inverted menu">
+        <div class="ui container">
+            <a href="#" class="header item">
+                <img class="logo" src="assets/logo.png"> &nbsp; Ledpad Manager
+            </a>
+        </div>
+    </div>
+
+    <div class="ui main">
+        <div class="ui stackable centered grid">
+            <div class="row">
+                <h4 class="ui horizontal divider header">
+                    <i class="settings icon"></i>
+                    Ledpad configuration
+                </h4>
+            </div>
+            <div class="row">
+                <div class="ten wide column">
+                    <ui-view>
+                    </ui-view>
+                </div>
+                <div class="six wide column">
+                    <div class="ui segments" id="settings">
+                        <div class="ui top segment">
+                            Settings
+                        </div>
+                        <div class="ui secondary segment">
+                            <div class="ui form success">
+
+                                <div class="field">
+                                    <label>Target button</label>
+                                    <div class="ui fluid basic buttons">
+                                        <button class="ui button">Startup</button>
+                                        <button class="ui button">1</button>
+                                        <button class="ui button">2</button>
+                                        <button class="ui button">3</button>
+                                        <button class="ui button">4</button>
+                                        <button class="ui button">5</button>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label>Mode</label>
+                                    <select class="ui dropdown">
+                                        <option value="">Mode</option>
+                                        <option value="1">Simple output</option>
+                                        <option value="0">Game of Life</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui bottom segment card">
+                            <div class="extra content">
+                                <span class="left floated ui tiny primary labeled icon button">
+                                    <i class="icon download"></i>
+                                    Flash
+                                </span>
+                                <span class="right floated ui tiny positive labeled icon button">
+                                    <i class="icon save"></i>
+                                    Save
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    $('select.dropdown').dropdown();
+</script>
+
+</html>

@@ -1,0 +1,32 @@
+@media (min-width: 768px) {
+    body {
+        min-width: 1020px;
+        overflow-x: scroll;
+    }
+}
+@media (max-width: 768px) {
+    body {        
+        min-width: 680px;
+        overflow-x: scroll;
+    }
+    
+}
+body {
+    background-color: #FFFFFF;    
+}
+.ui.menu .item img.logo {
+    margin-right: 1.5em;
+}
+.main {
+    margin: 7em 3em;
+}
+.wireframe {
+    margin-top: 2em;
+}
+.ui.footer.segment {
+    margin: 5em 0em 0em;
+    padding: 5em 0em;
+}
+#settings {
+    min-width: 375px;
+}

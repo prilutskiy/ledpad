@@ -2,9 +2,9 @@
   "name": "ledpad-manager",
   "version": "1.0.0",
   "description": "Arduino based programmable ledpad",
-  "main": "app.js",
+  "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node main.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +20,15 @@
   "bugs": {
     "url": "https://github.com/prilutskiy/ledpad/issues"
   },
-  "homepage": "https://github.com/prilutskiy/ledpad#readme"
+  "homepage": "https://github.com/prilutskiy/ledpad#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-concat-css": "^2.2.0",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-jsmin": "^0.1.5",
+    "gulp-rename": "^1.2.2",
+    "serialport": "^2.0.6"
+  }
 }
