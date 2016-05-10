@@ -1,6 +1,7 @@
 #include "LedControl.h"
 #include "SPI.h"
 #include "SD.h"
+#include "LedPad.h"
 
 const int DIN = 7;           //  выход данных с Arduino
 const int CLK = 6;           //  частота синхронизации последовательной передачи данных Arduino
@@ -169,11 +170,21 @@ void setup()
 bool btnState = false;
 void loop()
 {
+  char inputData[1536];
+  int counter = 0;
   while (Serial.available() > 0)
   {
-    char c = Serial.read();
-    Serial.print(c);
+    char data = Serial.read();
+    if (data == 'g') // if 'g' then send back config file content
+    {
+      //TODO: open and read the file
+    }
+    else
+    {
+      inputData[counter++] = data;
+    }
   }
+  
   if (digitalRead(btnPin) == HIGH)
   {
     btnState = true;
