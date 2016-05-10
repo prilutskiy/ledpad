@@ -13,6 +13,7 @@ const int fieldWidth = 8 * ledCount;
 int btnPin = 2;
 
 LedControl ledpad = LedControl(DIN, CLK, CS, ledCount);
+bool field[fieldWidth][fieldHeight];
 File fieldsConfig;
 
 const char* filename = "fields.txt";
@@ -84,28 +85,96 @@ void initLedpad()
     ledpad.clearDisplay(i);     //  очистка дисплея от мусора
   }
 }
+void redrawCells(bool _field[fieldWidth][fieldHeight])
+{
+  for (int y = 0; y < fieldHeight; y++)
+  {
+    for (int x = 0; x < fieldWidth; x++)
+    {
+      field[x][y] = _field[x][y];
+      setCell(x, y, field[x][y]);
+    }
+  }
+}
+
+void initField()
+{
+  field[2][2] = true;
+  field[3][2] = true;
+  field[4][2] = true;
+  field[4][3] = true;
+  field[3][4] = true;
+  redrawCells(field);
+}
+int getNeighbourCount(int x, int y)
+{
+  int leftX = (x - 1) < 0 ? fieldWidth - 1 : (x - 1);
+  int rightX = (x + 1) > (fieldWidth - 1) ? 0 : (x + 1);
+  int lowerY = (y - 1) < 0 ? (fieldHeight - 1) : (y - 1);
+  int upperY = (y + 1) > (fieldHeight - 1) ? 0 : (y + 1);
+  int count = (int)field[leftX][upperY] + (int)field[x][upperY] + (int)field[rightX][upperY]
+              + (int)field[leftX][y] + (int)field[rightX][y]
+              + (int)field[leftX][lowerY] + (int)field[x][lowerY] + (int)field[rightX][lowerY];
+  return count;
+}
+
+void nextField()
+{
+  bool nextField[fieldWidth][fieldHeight];
+  for (int y = 0; y < fieldHeight; y++)
+  {
+    for (int x = 0; x < fieldWidth; x++)
+    {
+      bool currentState = field[x][y];
+      bool nextState = false;
+      int neighbourCount = getNeighbourCount(x, y);
+      if (currentState == true)
+      {
+        if (neighbourCount == 2 || neighbourCount == 3)
+        {
+          nextState = true;
+        }
+        else
+        {
+          nextState = false;
+        }
+      }
+      else
+      {
+        if (neighbourCount == 3)
+        {
+          nextState = true;
+        }
+        else
+        {
+          nextState = false;
+        }
+      }
+      nextField[x][y] = nextState;
+    }
+  }
+  redrawCells(nextField);
+}
 
 void setup()
 {
   Serial.begin (9600);
-  SD.begin(10);  
+  SD.begin(10);
   initLedpad();
   pinMode(btnPin, INPUT);
   sdtest();
+  initField();
 }
 
-int x = 0;
-int y = 0;
 bool btnState = false;
-int delayFactor = 1;
 void loop()
-{    
+{
   while (Serial.available() > 0)
   {
     char c = Serial.read();
     Serial.print(c);
   }
-  if (digitalRead(btnPin) == HIGH) 
+  if (digitalRead(btnPin) == HIGH)
   {
     btnState = true;
   }
@@ -113,28 +182,12 @@ void loop()
   {
     if (btnState)
     {
-      //on click actions 
-      delayFactor++;
-      if (delayFactor > 10)
-      {
-        delayFactor = 1;
-      }
-      //reset btn state
-      btnState = false;
+      //on click actions
+
     }
-    if (x >= fieldWidth)
-    {
-      x = 0;
-      y++;
-    }
-    if (y >= fieldHeight)
-    {
-      y = 0;
-      clearLeds();
-    }
-    setCell(x++, y, true);    
-  }  
-  delay(50*delayFactor); 
+    nextField();
+  }
+  //delay(100);
 }
 
 
