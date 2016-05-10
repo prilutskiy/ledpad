@@ -12,14 +12,16 @@ const int fieldHeight = 8;
 const int fieldWidth = 8 * ledCount;
 
 int btnPin = 2;
+LedPad ledpad = LedPad(2000);
+/*
+  LedControl ledControl = LedControl(DIN, CLK, CS, ledCount);
+  bool field[fieldWidth][fieldHeight];
+  File fieldsConfig;
 
-LedControl ledpad = LedControl(DIN, CLK, CS, ledCount);
-bool field[fieldWidth][fieldHeight];
-File fieldsConfig;
+  const char* filename = "fields.txt";
 
-const char* filename = "fields.txt";
-void sdtest()
-{
+  void sdtest()
+  {
   fieldsConfig = SD.open(filename, FILE_WRITE);
 
   // if the file opened okay, write to it:
@@ -59,35 +61,35 @@ void sdtest()
     // if the file didn't open, print an error:
     Serial.println("error opening file");
   }
-}
+  }
 
 
-void setCell(int x, int y, bool value)
-{
+  void setCell(int x, int y, bool value)
+  {
   int ledIndex = x / 8;
   int _x = x % 8;
-  ledpad.setLed(ledIndex, _x, y, value);
-}
+  ledControl.setLed(ledIndex, _x, y, value);
+  }
 
-void clearLeds()
-{
+  void clearLeds()
+  {
   for (int i = 0; i < ledCount; i++)
   {
-    ledpad.clearDisplay(i);
+    ledControl.clearDisplay(i);
   }
-}
+  }
 
-void initLedpad()
-{
+  void initLedpad()
+  {
   for (int i = 0; i < ledCount; i++)
   {
-    ledpad.shutdown(i, false);  //
-    ledpad.setIntensity(i, 8);  //  устанавливаем интенсивность свечения от  0 до 16
-    ledpad.clearDisplay(i);     //  очистка дисплея от мусора
+    ledControl.shutdown(i, false);  //
+    ledControl.setIntensity(i, 8);  //  устанавливаем интенсивность свечения от  0 до 16
+    ledControl.clearDisplay(i);     //  очистка дисплея от мусора
   }
-}
-void redrawCells(bool _field[fieldWidth][fieldHeight])
-{
+  }
+  void redrawCells(bool _field[fieldWidth][fieldHeight])
+  {
   for (int y = 0; y < fieldHeight; y++)
   {
     for (int x = 0; x < fieldWidth; x++)
@@ -96,19 +98,19 @@ void redrawCells(bool _field[fieldWidth][fieldHeight])
       setCell(x, y, field[x][y]);
     }
   }
-}
+  }
 
-void initField()
-{
+  void initField()
+  {
   field[2][2] = true;
   field[3][2] = true;
   field[4][2] = true;
   field[4][3] = true;
   field[3][4] = true;
   redrawCells(field);
-}
-int getNeighbourCount(int x, int y)
-{
+  }
+  int getNeighbourCount(int x, int y)
+  {
   int leftX = (x - 1) < 0 ? fieldWidth - 1 : (x - 1);
   int rightX = (x + 1) > (fieldWidth - 1) ? 0 : (x + 1);
   int lowerY = (y - 1) < 0 ? (fieldHeight - 1) : (y - 1);
@@ -117,10 +119,10 @@ int getNeighbourCount(int x, int y)
               + (int)field[leftX][y] + (int)field[rightX][y]
               + (int)field[leftX][lowerY] + (int)field[x][lowerY] + (int)field[rightX][lowerY];
   return count;
-}
+  }
 
-void nextField()
-{
+  void nextField()
+  {
   bool nextField[fieldWidth][fieldHeight];
   for (int y = 0; y < fieldHeight; y++)
   {
@@ -155,16 +157,17 @@ void nextField()
     }
   }
   redrawCells(nextField);
-}
-
+  }
+*/
 void setup()
 {
   Serial.begin (9600);
   SD.begin(10);
-  initLedpad();
+  //initLedpad();
   pinMode(btnPin, INPUT);
-  sdtest();
-  initField();
+  //sdtest();
+  //initField();
+  ledpad.Start();
 }
 
 bool btnState = false;
@@ -184,21 +187,23 @@ void loop()
       inputData[counter++] = data;
     }
   }
-  
+
   if (digitalRead(btnPin) == HIGH)
   {
+    Serial.println("button high");
     btnState = true;
   }
   else
   {
+    Serial.println("button low");
     if (btnState)
     {
+      btnState = false;
       //on click actions
-
+      ledpad.NextMode();
     }
-    nextField();
   }
-  //delay(100);
+  ledpad.Next();
 }
 
 
