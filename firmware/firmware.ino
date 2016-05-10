@@ -100,6 +100,11 @@ bool btnState = false;
 int delayFactor = 1;
 void loop()
 {    
+  while (Serial.available() > 0)
+  {
+    char c = Serial.read();
+    Serial.print(c);
+  }
   if (digitalRead(btnPin) == HIGH) 
   {
     btnState = true;
