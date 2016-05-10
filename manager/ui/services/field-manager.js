@@ -3,8 +3,8 @@ angular.module("field.manager", [])
         function Field() {
             var self = this;
             
-            this.data = createField(32, 0);
-            this.initialData = createField(32, 0);
+            this.data = createField(32, 8, 0);
+            this.initialData = createField(32, 8, 0);
             
             this.mouseState = 0; //1 - pressed, 0 - released
             this.resetMouse = function() {
@@ -47,10 +47,10 @@ angular.module("field.manager", [])
                 }
                 self.initialData = matrix;
             };
-            function createField(n, initialValue) {
-                var data = new Array(n);
+            function createField(x, y, initialValue) {
+                var data = new Array(y);
                 for (var i = 0; i < data.length; i++) {
-                    data[i] = new Array(n);
+                    data[i] = new Array(x);
                     data[i].fill(initialValue);
                 }
                 return data;
