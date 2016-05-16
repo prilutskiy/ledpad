@@ -37,12 +37,15 @@ void loop()
   {
     x = (Serial.read() - '0') * 10 + (Serial.read() - '0');
     y = (Serial.read() - '0') * 10 + (Serial.read() - '0');
-    Serial.println(x);
+    Serial.print(x);
+    Serial.print(" ");
     Serial.println(y);
-    if (!isOn)
+    if (isOn)
     {
-      ledpad.ToggleCell(x, y);
-    }    
+      isOn = false;
+      ledpad.Reset();
+    }
+    ledpad.ToggleCell(x, y);
   }
   if (digitalRead(BUTTON_PIN) == HIGH)
   {

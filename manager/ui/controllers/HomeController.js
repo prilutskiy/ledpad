@@ -1,6 +1,6 @@
 app.controller('HomeController', [
-    "field", "$scope",
-    function(field, $scope) {
+    "field", "$scope", "$http",
+    function (field, $scope, $http) {
         $scope.field = field.data;
         $scope.loadedFile = null;
 
@@ -9,10 +9,11 @@ app.controller('HomeController', [
         $scope.onMousedown = field.onMousedown;
         $scope.onMouseup = field.onMouseup;
 
+        $scope.flashData = field.flashData;
         $scope.clearData = field.clearData;
         $scope.revertData = field.revertData;
-
-        $scope.saveData = function(e) {
+        
+        $scope.saveData = function (e) {
             var filename = "field.gol";
             var data = JSON.stringify(field.data);
             var blob = new Blob([data], { type: 'text/json' });
@@ -26,13 +27,13 @@ app.controller('HomeController', [
                 0, 0, 0, 0, 0, false, false, false, false, 0, null);
             a.dispatchEvent(e);
         };
-        var f = function(e) {
+        var f = function (e) {
             var file = e.files[0];
             if (!file) {
                 return;
             }
             var reader = new FileReader();
-            var f = function(e) {
+            var f = function (e) {
                 var content = e.target.result;
                 var data = JSON.parse(content);
                 field.setData(data);

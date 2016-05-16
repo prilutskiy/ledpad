@@ -30,6 +30,10 @@
                 <i class="icon arrow up"></i>
                 Load pattern
             </span>
+            <span class="left floated ui tiny primary labeled icon button" ng-click="flashData()">
+                                    <i class="icon download"></i>
+                                    Flash
+                                </span>
             <input id="loadFile" type="file" accept=".gol" multiselect="false" hidden ng-model="loadedFile" onchange="angular.element(this).scope().loadData(this)">
         </div>
     </div>

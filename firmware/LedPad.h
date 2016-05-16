@@ -62,6 +62,15 @@ class LedPad
       NextMode();
       */
     }
+    void Reset()
+    {
+      for (int y = 0; y < LED_HEIGHT; y++)
+        for (int x = 0; x < LED_WIDTH; x++)
+          {
+            field[x][y] = false;
+          }          
+      this->SetCells(field);
+    }
     void Stop()
     {
       for (int y = 0; y < LED_HEIGHT; y++)
